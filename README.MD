@@ -10,7 +10,7 @@ O problema do Circuito Hamiltoniano pergunta se existe um caminho em um grafo qu
 
 ## Exemplo de Aplicação
 
-Um exemplo de aplicação é na otimização de rotas de entrega (caixeiro-viajante), onde é necessário visitar cada ponto de entrega uma vez antes de retornar ao ponto inicial.
+Um exemplo de aplicação é um vendedor (ou cacheiro) precisa visitar um conjunto de cidades, começando de uma cidade inicial, e retornar a essa cidade após visitar todas as outras. O objetivo é determinar a rota mais curta (ou a menos custosa) que o vendedor pode seguir para completar sua viagem.
 
 ## Como a Técnica Resolve o Problema
 
