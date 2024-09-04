@@ -49,6 +49,7 @@ adjacency_matrix = [
 
 Exemplo que não satisfaz um circuito hamiltoniano:
 
+```
 adjacency_matrix = [
     [0, 0, 0, 1, 0],
     [0, 0, 1, 1, 1],
@@ -56,10 +57,11 @@ adjacency_matrix = [
     [1, 1, 0, 0, 1],
     [0, 1, 1, 1, 0]
 ]
+```
 
 ### visualizando o Grafo
 
-O arquivo *delivery_routes.py* é um exemplo funcional em Python usando backtracking para visualizar o grafo usando os exemplos de matriz de adjacência usado anteriomente. Para seu uso é necessário instalar os pacotes:
+O arquivo *view_routes.py* é um exemplo funcional em Python usando backtracking para visualizar o grafo usando os exemplos de matriz de adjacência usado anteriomente. Para seu uso é necessário instalar os pacotes:
 
 ```
 pip install networkx matplotlib
