@@ -14,7 +14,7 @@ Um exemplo de aplicação é na otimização de rotas de entrega (caixeiro-viaja
 
 ## Como a Técnica Resolve o Problema
 
-A técnica envolve uma busca exaustiva que testa todas as permutações possíveis de vértices para encontrar um caminho que satisfaça as condições do Circuito Hamiltoniano. Algoritmos como backtracking são usados para explorar todas as possibilidades de forma sistemática.
+A técnica envolve uma busca exaustiva que testa todas as mudanças possíveis de vértices para encontrar um caminho que satisfaça as condições do Circuito Hamiltoniano. Algoritmos como backtracking são usados para explorar todas as possibilidades de forma sistemática.
 
 ### Executando o Código
 
@@ -59,7 +59,7 @@ adjacency_matrix = [
 ]
 ```
 
-### visualizando o Grafo
+### Visualizando o Grafo
 
 O arquivo *view_routes.py* é um exemplo funcional em Python usando backtracking para visualizar o grafo usando os exemplos de matriz de adjacência usado anteriomente. Para seu uso é necessário instalar os pacotes:
 
