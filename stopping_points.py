@@ -23,6 +23,8 @@ def find_hamiltonian_cycle(graph):
 
     if not hamiltonian_cycle_util(graph, path, 1):
         return None
+    
+    path.append(path[0])
     return path
 
 def print_graph_and_matrix(graph, cycle):
