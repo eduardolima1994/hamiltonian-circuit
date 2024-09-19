@@ -1,64 +1,54 @@
-import random
+def is_hamiltonian_cycle(graph, path, pos):
+    # Verifica se todos os vértices estão incluídos no caminho
+    if pos == len(graph):
+        # Verifica se existe uma aresta entre o último e o primeiro vértice
+        return graph[path[pos - 1]][path[0]] == 1
 
-def generate_hamiltonian_cycle(n):
-    # Cria uma lista de nós
-    nodes = list(range(n))
-    
-    # Embaralha os nós para gerar uma permutação aleatória
-    random.shuffle(nodes)
-    
-    # Cria o ciclo conectando cada nó ao próximo
-    cycle = [(nodes[i], nodes[(i + 1) % n]) for i in range(n)]
-    
-    return cycle
+    # Tenta diferentes vértices como próximo candidato no caminho Hamiltoniano
+    for v in range(1, len(graph)):
+        if is_safe(v, graph, path, pos):
+            path[pos] = v
 
-def hamiltonian_cycle(graph):
-    def is_valid_vertex(v, pos, path):
-        # Checa se é adjacente ao último vértice no caminho atual
-        if graph[path[pos - 1]][v] == 0:
-            return False
+            # Recurre para construir o resto do caminho
+            if is_hamiltonian_cycle(graph, path, pos + 1):
+                return True
 
-        # Checa se o vértice já foi incluído no caminho
-        if v in path:
-            return False
+            # Remove o vértice atual se não leva a uma solução
+            path[pos] = -1
 
-        return True
+    return False
 
-    def ham_cycle_util(path, pos):
-        # Se todos os vértices estão incluídos no caminho
-        if pos == len(graph):
-            # E se há uma aresta do último ao primeiro vértice
-            return graph[path[pos - 1]][path[0]] == 1
-
-        for v in range(1, len(graph)):
-            if is_valid_vertex(v, pos, path):
-                path[pos] = v
-                if ham_cycle_util(path, pos + 1):
-                    return True
-                path[pos] = -1
-
+def is_safe(v, graph, path, pos):
+    # Verifica se este vértice é adjacente ao anterior
+    if graph[path[pos - 1]][v] == 0:
         return False
 
-    path = [-1] * len(graph)
-    path[0] = 0
+    # Verifica se o vértice já foi incluído
+    if v in path:
+        return False
 
-    if not ham_cycle_util(path, 1):
+    return True
+
+def hamiltonian_cycle(graph):
+    path = [-1] * len(graph)
+    path[0] = 0  # Começa do primeiro vértice
+
+    if is_hamiltonian_cycle(graph, path, 1):
+        return path + [path[0]]  # Retorna o caminho com ciclo fechado
+    else:
         return None
-    path.append(path[0])
-    return path
 
 # Exemplo de uso
 graph = [
-    [0, 1, 1, 0, 0, 0],
-    [1, 0, 1, 1, 0, 0],
-    [1, 1, 0, 1, 1, 0],
-    [0, 1, 1, 0, 1, 1],
-    [0, 0, 1, 1, 0, 1],
-    [0, 0, 0, 1, 1, 0]
+    [0, 1, 0, 1, 0],
+    [1, 0, 1, 1, 1],
+    [0, 1, 0, 0, 1],
+    [1, 1, 0, 0, 1],
+    [0, 1, 1, 1, 0]
 ]
 
 cycle = hamiltonian_cycle(graph)
 if cycle:
     print("Circuito Hamiltoniano encontrado:", cycle)
 else:
-    print("Nenhum circuito Hamiltoniano encontrado.")
+    print("Nenhum Circuito Hamiltoniano existe")

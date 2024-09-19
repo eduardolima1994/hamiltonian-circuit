@@ -1,65 +1,44 @@
-def hamiltonian_circuit(graph, path, visited):
+def hamiltonian_circuit(graph, path):
   """
-  Função para encontrar um circuito hamiltoniano.
+  Verifica a existência de um circuito Hamiltoniano em um grafo.
 
   Args:
-    graph: Matriz de adjacência do grafo.
-    path: Lista representando o caminho atual.
-    visited: Conjunto dos vértices já visitados.
+    graph: Uma matriz de adjacência representando o grafo.
+    path: Uma lista representando o caminho atual.
 
   Returns:
-    True se um circuito hamiltoniano for encontrado, False caso contrário.
+    True se um circuito Hamiltoniano for encontrado, False caso contrário.
   """
 
   n = len(graph)
-  last_vertex = path[-1]
+  if len(path) == n:
+    # Se o caminho tem o tamanho do grafo e o último vértice é adjacente ao primeiro,
+    # então encontramos um circuito Hamiltoniano.
+    return graph[path[0]][path[-1]] == 1
 
-  if len(path) == n and graph[last_vertex][path[0]] == 1:
-    return True
-
-  for vertex in range(n):
-    if not visited[vertex] and graph[last_vertex][vertex] == 1:
-      path.append(vertex)
-      visited.add(vertex)
-
-      if hamiltonian_circuit(graph, path, visited):
+  for v in range(n):
+    # Verifica se o vértice não está já no caminho e se há uma aresta para ele.
+    if v not in path and graph[path[-1]][v] == 1:
+      path.append(v)
+      if hamiltonian_circuit(graph, path):
         return True
-
       path.pop()
-      visited.remove(vertex)
 
   return False
 
-def find_hamiltonian_circuit(graph):
-  """
-  Função principal para encontrar um circuito hamiltoniano.
-
-  Args:
-    graph: Matriz de adjacência do grafo.
-
-  Returns:
-    Uma lista representando o circuito hamiltoniano, caso exista.
-    None, caso contrário.
-  """
-
-  n = len(graph)
-  for start in range(n):
-    path = [start]
-    visited = set([start])
-    if hamiltonian_circuit(graph, path, visited):
-      return path
-  return None
-
-# Exemplo de uso:
+# Exemplo de uso
 graph = [
-  [0, 1, 0, 1],
-  [1, 0, 1, 1],
-  [0, 1, 0, 1],
-  [1, 1, 1, 0]
+  [0, 1, 0, 1, 0],
+  [1, 0, 1, 1, 1],
+  [0, 1, 0, 0, 1],
+  [1, 1, 0, 0, 1],
+  [0, 1, 1, 1, 0]
 ]
 
-result = find_hamiltonian_circuit(graph)
-if result:
-  print("Circuito Hamiltoniano encontrado:", result)
+# Iniciando o caminho com o vértice 0
+path = [0]
+
+if hamiltonian_circuit(graph, path):
+  print("Um circuito Hamiltoniano existe.")
 else:
-  print("Nenhum circuito Hamiltoniano encontrado.")
+  print("Não existe um circuito Hamiltoniano.")

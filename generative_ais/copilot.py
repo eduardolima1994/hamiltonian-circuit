@@ -1,6 +1,6 @@
 class Graph:
     def __init__(self, vertices):
-        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
+        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]
         self.V = vertices
 
     def is_safe(self, v, pos, path):
@@ -30,14 +30,14 @@ class Graph:
         path[0] = 0
 
         if not self.hamiltonian_cycle_util(path, 1):
-            print("Solução não existe")
+            print("Não existe um circuito Hamiltoniano")
             return False
 
         self.print_solution(path)
         return True
 
     def print_solution(self, path):
-        print("Solução do Circuito Hamiltoniano existe: ", end="")
+        print("Circuito Hamiltoniano existe: ", end="")
         for vertex in path:
             print(vertex, end=" ")
         print(path[0], "\n")
