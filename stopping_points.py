@@ -27,27 +27,13 @@ def find_hamiltonian_cycle(graph):
     path.append(path[0])
     return path
 
-def print_graph_and_matrix(graph, cycle):
+def print_graph(graph):
     edges = [(i, j) for i in range(len(graph)) for j in range(i + 1, len(graph)) if graph[i][j] == 1]
     edge_labels = {edge: chr(97 + idx) for idx, edge in enumerate(edges)}
 
     print("Graph:")
     for edge in edges:
         print(f"{edge[0]}-{edge[1]} : {edge_labels[edge]}")
-
-    if cycle:
-        n = len(graph)
-        cycle_matrix = [[0] * n for _ in range(n)]
-        for i in range(len(cycle) - 1):
-            cycle_matrix[cycle[i]][cycle[i + 1]] = 1
-            cycle_matrix[cycle[i + 1]][cycle[i]] = 1
-        cycle_matrix[cycle[-1]][cycle[0]] = 1
-        cycle_matrix[cycle[0]][cycle[-1]] = 1
-
-        print("\nAdjacency Matrix:\n[")
-        for row in cycle_matrix:
-            print("    " + str(row) + ",")
-        print("]\n")
 
 def draw_graph_and_cycle(graph, cycle):
     G = nx.Graph()
@@ -82,7 +68,7 @@ adjacency_matrix = [
 
 cycle = find_hamiltonian_cycle(adjacency_matrix)
 if cycle:
-    print_graph_and_matrix(adjacency_matrix, cycle)
+    print_graph(adjacency_matrix)
     print("Hamiltonian Cycle found:\n", cycle)
     draw_graph_and_cycle(adjacency_matrix, cycle)
 else:
