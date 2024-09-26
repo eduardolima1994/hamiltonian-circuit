@@ -2,7 +2,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 def is_safe(v, pos, path, graph):
-    return graph[path[pos - 1]][v] == 1 and v not in path
+    has_edge = graph[path[pos - 1]][v] == 1
+    not_in_path = v not in path
+    return has_edge and not_in_path
 
 def hamiltonian_cycle_util(graph, path, pos):
     if pos == len(graph):
@@ -68,8 +70,8 @@ adjacency_matrix = [
 
 cycle = find_hamiltonian_cycle(adjacency_matrix)
 if cycle:
-    print_graph(adjacency_matrix)
     print("Hamiltonian Cycle found:\n", cycle)
+    print_graph(adjacency_matrix)
     draw_graph_and_cycle(adjacency_matrix, cycle)
 else:
     print("No Hamiltonian Cycle found")
