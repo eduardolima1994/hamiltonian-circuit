@@ -70,9 +70,9 @@ adjacency_matrix = [
 
 cycle = find_hamiltonian_cycle(adjacency_matrix)
 if cycle:
-    print("Hamiltonian Cycle found:\n", cycle)
     print_graph(adjacency_matrix)
     draw_graph_and_cycle(adjacency_matrix, cycle)
+    print("Hamiltonian Cycle found:\n", cycle)
 else:
-    print("No Hamiltonian Cycle found")
     draw_graph_and_cycle(adjacency_matrix, None)
+    print("No Hamiltonian Cycle found")
