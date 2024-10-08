@@ -1,5 +1,5 @@
-import networkx as nx
-import matplotlib.pyplot as plt
+#import networkx as nx
+#import matplotlib.pyplot as plt
 
 def is_safe(v, pos, path, graph):
     has_edge = graph[path[pos - 1]][v] == 1
@@ -37,6 +37,7 @@ def print_graph(graph):
     for edge in edges:
         print(f"{edge[0]}-{edge[1]} : {edge_labels[edge]}")
 
+"""
 def draw_graph_and_cycle(graph, cycle):
     G = nx.Graph()
     for i in range(len(graph)):
@@ -56,6 +57,49 @@ def draw_graph_and_cycle(graph, cycle):
 
     plt.title("Grafo e Ciclo Hamiltoniano (se encontrado)")
     plt.show()
+"""
+
+"""
+adjacency_matrix = [
+    [0, 0, 0, 1, 1],
+    [0, 0, 1, 0, 1],
+    [0, 1, 0, 1, 0],
+    [1, 0, 1, 0, 1],
+    [1, 1, 0, 1, 0]
+]
+
+adjacency_matrix = [
+    [0, 1, 1, 0, 1, 0, 0, 0],
+    [1, 0, 0, 1, 0, 1, 0, 0],
+    [1, 0, 0, 1, 0, 0, 1, 0],
+    [0, 1, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 0, 1],
+    [0, 0, 1, 0, 1, 0, 0, 1],
+    [0, 0, 0, 1, 0, 1, 1, 0]
+]
+
+adjacency_matrix = [
+    [0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
+    [1, 0, 1, 1, 0, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 1, 1, 0, 0, 0, 1],
+    [0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+    [1, 0, 1, 0, 0, 0, 1, 0, 1, 0],
+    [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+    [1, 0, 0, 0, 1, 1, 0, 0, 1, 1],
+    [0, 0, 0, 1, 0, 1, 0, 0, 1, 1],
+    [0, 1, 0, 0, 1, 0, 1, 1, 0, 0],
+    [0, 0, 1, 0, 0, 0, 1, 1, 0, 0]
+]
+
+adjacency_matrix = [
+    [0, 0, 0, 1, 0],
+    [0, 0, 1, 1, 1],
+    [0, 1, 0, 0, 1],
+    [1, 1, 0, 0, 1],
+    [0, 1, 1, 1, 0]
+]
+"""
 
 adjacency_matrix = [
     [0, 1, 1, 0, 1, 0, 0, 0],
@@ -71,8 +115,8 @@ adjacency_matrix = [
 cycle = find_hamiltonian_cycle(adjacency_matrix)
 if cycle:
     print_graph(adjacency_matrix)
-    draw_graph_and_cycle(adjacency_matrix, cycle)
+    #draw_graph_and_cycle(adjacency_matrix, cycle)
     print("Hamiltonian Cycle found:\n", cycle)
 else:
-    draw_graph_and_cycle(adjacency_matrix, None)
+    #draw_graph_and_cycle(adjacency_matrix, None)
     print("No Hamiltonian Cycle found")
