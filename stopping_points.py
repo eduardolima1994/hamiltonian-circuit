@@ -13,6 +13,7 @@ def hamiltonian_cycle_util(graph, path, pos):
     for v in range(1, len(graph)):
         if is_safe(v, pos, path, graph):
             path[pos] = v
+            print("Current path:", path)  # Acompanhar o caminho atual
             if hamiltonian_cycle_util(graph, path, pos + 1):
                 return True
             path[pos] = -1
