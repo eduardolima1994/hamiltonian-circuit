@@ -1,22 +1,22 @@
 #import networkx as nx
 #import matplotlib.pyplot as plt
 
-def is_safe(v, pos, path, graph):
+def is_safe(v, pos, path, graph): # Verifica se há uma aresta entre o último vértice e v, e se v está no caminho
     has_edge = graph[path[pos - 1]][v] == 1
     not_in_path = v not in path
     return has_edge and not_in_path
 
 def hamiltonian_cycle_util(graph, path, pos):
-    if pos == len(graph):
+    if pos == len(graph): # Se todos os vértices foram visitados, verifica se há aresta do último ao primeiro
         return graph[path[pos - 1]][path[0]] == 1
 
-    for v in range(1, len(graph)):
+    for v in range(1, len(graph)): # Tenta adicionar vértices não visitados
         if is_safe(v, pos, path, graph):
-            path[pos] = v
+            path[pos] = v # Adiciona o vértice ao caminho
             print("Current path:", path)  # Acompanhar o caminho atual
             if hamiltonian_cycle_util(graph, path, pos + 1):
                 return True
-            path[pos] = -1
+            path[pos] = -1 # Backtracking
 
     return False
 
